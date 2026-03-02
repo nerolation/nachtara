@@ -1,6 +1,10 @@
-# Stealth Wallet CLI
+<p align="center">
+  <img src="docs/logo.png" alt="Nachtara" width="360">
+</p>
 
-CLI wallet for ERC-5564/ERC-6538 stealth address transactions on Ethereum.
+<p align="center">
+  CLI wallet for ERC-5564/ERC-6538 stealth address transactions on Ethereum.
+</p>
 
 ## What It Does
 
