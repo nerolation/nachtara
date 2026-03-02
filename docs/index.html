@@ -33,8 +33,8 @@
       --border: #151515;
       --border-bright: #252525;
       --text: #f0f0f0;
-      --text-dim: #888888;
-      --text-muted: #666666;
+      --text-dim: #a0a0a0;
+      --text-muted: #808080;
       --accent: #00ff88;
       --accent-dim: #00cc6a;
       --accent-glow: rgba(0, 255, 136, 0.08);
@@ -820,6 +820,7 @@
     <a href="https://github.com/nerolation/nachtara/blob/master/AGENTS.md">Agent Specs</a>
     <a href="https://github.com/nerolation/nachtara">GitHub</a>
     <a href="https://eips.ethereum.org/EIPS/eip-5564">ERC-5564</a>
+    <a href="https://eips.ethereum.org/EIPS/eip-6538">ERC-6538</a>
   </footer>
 
   <script>
@@ -972,13 +973,9 @@
 
     function initScanLines() {
       scanLines = [
-        new ScanLine(1.5, 0.4, 80),
-        new ScanLine(2.2, 0.25, 50),
-        new ScanLine(0.8, 0.15, 120),
+        new ScanLine(1.2, 0.25, 60),
       ];
-      scanLines[0].y = window.innerHeight * 0.2;
-      scanLines[1].y = window.innerHeight * 0.6;
-      scanLines[2].y = window.innerHeight * 0.9;
+      scanLines[0].y = window.innerHeight * 0.5;
     }
 
     function resizeScanCanvas() {
