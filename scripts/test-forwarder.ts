@@ -21,9 +21,6 @@ import {
 } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { sepolia } from 'viem/chains';
-import { readFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
 
 // Import our crypto functions
 import {
@@ -33,8 +30,6 @@ import {
   computeStealthPrivateKey
 } from '../src/lib/crypto.js';
 import { ERC5564_ANNOUNCER, STEALTH_FORWARDER } from '../src/lib/types.js';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Forwarder ABI
 const FORWARDER_ABI = [
@@ -75,12 +70,10 @@ const ANNOUNCEMENT_EVENT = {
 async function main() {
   console.log('=== StealthForwarder Test on Sepolia ===\n');
 
-  // Load private key
-  let privateKey: Hex;
-  try {
-    privateKey = ('0x' + readFileSync(join(__dirname, '..', '..', 'archive', 'misc', 'pk.txt'), 'utf8').trim()) as Hex;
-  } catch {
-    console.error('Could not read private key from archive/misc/pk.txt');
+  // Get private key from environment variable only
+  const privateKey = process.env.PRIVATE_KEY as Hex;
+  if (!privateKey) {
+    console.error('Set PRIVATE_KEY env var (e.g., PRIVATE_KEY=0x... npx tsx scripts/test-forwarder.ts)');
     process.exit(1);
   }
 

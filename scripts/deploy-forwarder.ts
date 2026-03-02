@@ -19,16 +19,11 @@ async function main() {
     readFileSync(join(__dirname, '..', 'artifacts', 'StealthForwarder.json'), 'utf8')
   );
 
-  // Get private key
-  let privateKey = process.env.PRIVATE_KEY as Hex;
+  // Get private key from environment variable only
+  const privateKey = process.env.PRIVATE_KEY as Hex;
   if (!privateKey) {
-    // Try reading from file
-    try {
-      privateKey = ('0x' + readFileSync(join(__dirname, '..', '..', 'archive', 'misc', 'pk.txt'), 'utf8').trim()) as Hex;
-    } catch {
-      console.error('Set PRIVATE_KEY env var or ensure archive/misc/pk.txt exists');
-      process.exit(1);
-    }
+    console.error('Set PRIVATE_KEY env var (e.g., PRIVATE_KEY=0x... npx tsx scripts/deploy-forwarder.ts)');
+    process.exit(1);
   }
 
   const account = privateKeyToAccount(privateKey);
